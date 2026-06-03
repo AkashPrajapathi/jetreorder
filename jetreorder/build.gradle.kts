@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
+
+    id("com.vanniktech.maven.publish")
 }
 
 android {
@@ -76,4 +78,52 @@ dependencies {
     debugImplementation(
         libs.androidx.compose.ui.tooling
     )
+}
+
+mavenPublishing {
+
+    publishToMavenCentral()
+
+    signAllPublications()
+
+    coordinates(
+        "io.github.akashprajapathi",
+        "jetreorder",
+        "0.1.0"
+    )
+
+    pom {
+
+        name.set("JetReorder")
+
+        description.set(
+            "Drag and drop reorder library for Jetpack Compose"
+        )
+
+        inceptionYear.set("2026")
+
+        url.set(
+            "https://github.com/AkashPrajapathi/jetreorder"
+        )
+
+        licenses {
+            license {
+                name.set("MIT")
+                url.set("https://opensource.org/licenses/MIT")
+            }
+        }
+
+        developers {
+            developer {
+                id.set("AkashPrajapathi")
+                name.set("Akash Prajapathi")
+            }
+        }
+
+        scm {
+            url.set(
+                "https://github.com/AkashPrajapathi/jetreorder"
+            )
+        }
+    }
 }
