@@ -22,4 +22,7 @@ internal class DragState<K> {
 
     var grabOffsetY by mutableFloatStateOf(0f)
         internal set
+
+    var overlayHeight by mutableFloatStateOf(0f)
+        internal set
 }

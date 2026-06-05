@@ -37,20 +37,41 @@ internal class ReorderController<K>(
         val pointerY =
             dragState.pointerY
 
-        val targetItem =
+        val layouts =
             reorderState.itemLayouts
-                .firstOrNull {
 
-                    pointerY >= it.start &&
-                            pointerY < it.end
-                }
+        if (layouts.isEmpty()) {
+            return
+        }
+
+        val targetItem =
+            layouts.firstOrNull {
+
+                pointerY >= it.start &&
+                        pointerY < it.end
+            }
+
+        val resolvedTarget = when {
+
+            targetItem != null ->
+                targetItem
+
+            pointerY < layouts.first().start ->
+                layouts.first()
+
+            pointerY >= layouts.last().end ->
+                layouts.last()
+
+            else ->
+                null
+        }
 
         reorderState.targetIndex =
-            targetItem?.index
+            resolvedTarget?.index
                 ?: dragState.sourceIndex
 
         reorderState.targetKey =
-            targetItem?.key
+            resolvedTarget?.key
                 ?: dragState.sourceKey
     }
 

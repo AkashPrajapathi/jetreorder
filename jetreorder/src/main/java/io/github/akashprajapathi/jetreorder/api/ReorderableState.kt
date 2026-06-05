@@ -1,7 +1,6 @@
 package io.github.akashprajapathi.jetreorder.api
 
 import io.github.akashprajapathi.jetreorder.internal.animation.ReorderAnimationController
-import io.github.akashprajapathi.jetreorder.internal.animation.ReorderAnimationState
 import io.github.akashprajapathi.jetreorder.internal.autoscroll.AutoScrollController
 import io.github.akashprajapathi.jetreorder.internal.autoscroll.AutoScrollState
 import io.github.akashprajapathi.jetreorder.internal.drag.DragController
@@ -17,8 +16,6 @@ class ReorderableState<K> internal constructor(
     private val autoScrollState: AutoScrollState,
 
     private val reorderState: ReorderState<K>,
-
-    private val animationState: ReorderAnimationState<K>,
 
     private val dragController: DragController<K>,
 
@@ -40,11 +37,21 @@ class ReorderableState<K> internal constructor(
     internal val overlayOffsetY: Float
         get() = pointerY - grabOffsetY
 
+    internal var overlayHeight: Float
+        get() = dragState.overlayHeight
+        set(value) {
+            dragState.overlayHeight = value
+        }
+
+    internal val visualOverlayOffsetY: Float
+        get() = overlayOffsetY.coerceIn(
+            0f,
+            (containerHeight - overlayHeight)
+                .coerceAtLeast(0f)
+        )
+
     internal val sourceKey: K?
         get() = dragState.sourceKey
-
-    internal val sourceIndex: Int
-        get() = dragState.sourceIndex
 
     internal val pointerY: Float
         get() = dragState.pointerY
@@ -54,9 +61,6 @@ class ReorderableState<K> internal constructor(
 
     internal val targetIndex: Int
         get() = reorderState.targetIndex
-
-    internal val targetKey: K?
-        get() = reorderState.targetKey
 
     internal var containerHeight: Float
         get() = autoScrollState.containerHeight

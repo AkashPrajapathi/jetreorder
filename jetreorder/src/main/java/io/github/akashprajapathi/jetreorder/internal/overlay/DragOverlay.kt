@@ -4,11 +4,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.onSizeChanged
 
 @Composable
 internal fun DragOverlay(
     isDragging: Boolean,
     offsetY: Float,
+    onHeightChanged: (Float) -> Unit,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
@@ -19,6 +21,11 @@ internal fun DragOverlay(
 
     Box(
         modifier = modifier
+            .onSizeChanged {
+                onHeightChanged(
+                    it.height.toFloat()
+                )
+            }
             .graphicsLayer {
 
                 translationY = offsetY

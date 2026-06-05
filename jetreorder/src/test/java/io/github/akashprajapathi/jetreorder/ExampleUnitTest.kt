@@ -1,4 +1,4 @@
-package io.github.akashprajapathi.reorder
+package io.github.akashprajapathi.jetreorder
 
 import org.junit.Test
 

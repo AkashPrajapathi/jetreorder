@@ -32,14 +32,11 @@ fun <K> Modifier.reorderable(
             },
 
             onDragEnd = {
-
                 state.performMoveIfNeeded()
-
                 state.endDrag()
             },
 
             onDragCancel = {
-
                 state.endDrag()
             }
 
@@ -48,6 +45,7 @@ fun <K> Modifier.reorderable(
             state.updatePointerY(
                 change.position.y
             )
+
         }
     }
 }

@@ -1,4 +1,4 @@
-package io.github.akashprajapathi.reorder
+package io.github.akashprajapathi.jetreorder
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

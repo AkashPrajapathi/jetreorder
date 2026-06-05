@@ -72,7 +72,10 @@ fun <T, K> ReorderLazyColumn(
 
         DragOverlay(
             isDragging = state.isDragging,
-            offsetY = state.overlayOffsetY
+            offsetY = state.visualOverlayOffsetY,
+            onHeightChanged = {
+                state.overlayHeight = it
+            }
         ) {
 
             val draggedItem =

@@ -74,7 +74,6 @@ fun <K> rememberReorderableState(
             dragState = dragState,
             autoScrollState = autoScrollState,
             reorderState = reorderState,
-            animationState = animationState,
             dragController = dragController,
             autoScrollController = autoScrollController,
             reorderController = reorderController,
