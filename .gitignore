@@ -16,5 +16,3 @@ local.properties
 private.asc
 gradle.properties
 .idea/
-gradle/
-jetreorder/build.gradle.kts
