@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "JetReorder"
 
 include(":jetreorder")
+include(":sample")
